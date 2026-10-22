@@ -1,0 +1,93 @@
+\documentclass[10pt,letterpaper]{article}
+
+% Keep this preamble stable: the tailoring agent uses these layout commands.
+\usepackage[ignoreheadfoot,top=0.35cm,bottom=0.35cm,left=0.9cm,right=0.9cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{needspace}
+\usepackage{iftex}
+\usepackage[colorlinks=true,urlcolor=black,pdftitle={Candidate Resume},pdfauthor={Candidate Name}]{hyperref}
+
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+
+\raggedright
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\pagenumbering{gobble}
+\titleformat{\section}{\needspace{3\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{0.5pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.10cm}{0.07cm}
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+\newenvironment{highlights}{
+  \begin{itemize}[topsep=0.02cm,parsep=0.02cm,partopsep=0pt,itemsep=0pt,leftmargin=10pt]
+}{\end{itemize}}
+\newenvironment{onecolentry}{\begin{adjustwidth}{0.00001cm}{0.00001cm}}{\end{adjustwidth}}
+\newenvironment{twocolentry}[2][]{
+  \onecolentry\def\secondColumn{#2}\setcolumnwidth{\fill,4.5cm}\begin{paracol}{2}
+}{\switchcolumn\raggedleft\secondColumn\end{paracol}\endonecolentry}
+\newenvironment{projectentry}[2][]{
+  \onecolentry\def\secondColumn{#2}\setcolumnwidth{\fill,1.6cm}\begin{paracol}{2}
+}{\switchcolumn\raggedleft\secondColumn\end{paracol}\endonecolentry}
+\newenvironment{header}{\centering\linespread{1.1}}{\par}
+\let\hrefWithoutArrow\href
+
+\begin{document}
+  % Replace this sample body with facts from master/master_cv.md.
+  % Customize these placeholders before running /tailor for the first time.
+  \begin{header}
+    \fontsize{17pt}{17pt}\selectfont Candidate Name
+
+    \vspace{2pt}
+    \normalsize
+    City, State \;|\;
+    \hrefWithoutArrow{mailto:name@example.com}{name@example.com} \;|\;
+    \hrefWithoutArrow{https://www.linkedin.com/in/username}{linkedin.com/in/username} \;|\;
+    \hrefWithoutArrow{https://github.com/username}{github.com/username}
+  \end{header}
+
+  \vspace{-0.08cm}
+  \section{Education}
+  \begin{twocolentry}{Expected Month YYYY}
+    \textbf{University Name}, Degree in Field
+  \end{twocolentry}
+
+  \section{Technical Skills}
+  \begin{onecolentry}
+    \textbf{Languages:} Add only skills supported by the master CV
+  \end{onecolentry}
+
+  \section{Experience}
+  \begin{twocolentry}{Month YYYY -- Month YYYY}
+    \textbf{Role Title} | Organization
+  \end{twocolentry}
+  \begin{onecolentry}
+    \begin{highlights}
+      \item Replace this with a verified achievement from the master CV
+      \item Include tools and measurable results only when the master supports them
+    \end{highlights}
+  \end{onecolentry}
+
+  \section{Projects}
+  \begin{projectentry}{\hrefWithoutArrow{https://example.com}{Link}}
+    \textbf{Project Name} | Relevant tools
+  \end{projectentry}
+  \begin{onecolentry}
+    \begin{highlights}
+      \item Explain what was built, how it works, and its verified result
+      \item Keep each selected project to two to five concise bullets
+    \end{highlights}
+  \end{onecolentry}
+
+  % Add Leadership and Involvement only when supported by the master CV.
+  % Add Certifications last when the master CV contains certifications.
+\end{document}

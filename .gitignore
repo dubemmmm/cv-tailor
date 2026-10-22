@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Personal CV source material and generated application files
+master/inbox/*
+!master/inbox/.gitkeep
+master/master_cv.md
+master/eligibility.md
+templates/*.pdf
+output/
+jobs.txt
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+*~
