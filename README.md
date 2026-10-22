@@ -43,6 +43,23 @@ Then:
    /tailor <job-description URL, file path, or pasted text>
    ```
 
+To tailor resumes for several postings, create a private job queue and run the
+batch command:
+
+```bash
+cp jobs.example.txt jobs.txt
+# Add one job URL per line to jobs.txt
+```
+
+```text
+/tailor-batch
+```
+
+Claude processes the URLs in order, creates a separate resume for each eligible
+role, continues past closed or blocked jobs, and writes a run report to
+`output/batch_summary.md`. You can pass another queue path with
+`/tailor-batch path/to/jobs.txt`.
+
 The finished `.tex`, PDF, analysis, and review notes are written beneath
 `output/<company>_<role>/`.
 
@@ -56,6 +73,7 @@ To import from another location or replace an earlier import:
 
 ```text
 .claude/                 Claude Code command and specialist agent prompts
+jobs.example.txt         Example multi-job queue (copy to private jobs.txt)
 master/
   inbox/                 Drop a private source PDF here
   eligibility.example.md Eligibility profile template
@@ -72,6 +90,7 @@ output/                   Generated applications (created locally, ignored)
 
 ```bash
 make setup       # create .venv and install Python dependencies
+make init-jobs   # create a private jobs.txt queue from the example
 make import-cv   # import the only PDF in master/inbox/
 make test        # run unit tests
 make check       # run tests and script sanity checks
@@ -89,8 +108,8 @@ header wrapped. The command prints targeted hints for both cases.
 ## Privacy and accuracy
 
 - The PDF importer runs locally and makes no network requests.
-- `master/inbox/`, `master/master_cv.md`, `master/eligibility.md`, `output/`,
-  and PDF files under `templates/` are ignored by Git.
+- `master/inbox/`, `master/master_cv.md`, `master/eligibility.md`, `jobs.txt`,
+  `output/`, and PDF files under `templates/` are ignored by Git.
 - Before pushing, run `git status` and make sure no personal document is staged.
 - The importer is not OCR. If it reports almost no text, run OCR on a scanned
   PDF first.

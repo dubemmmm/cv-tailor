@@ -47,3 +47,7 @@ Goal: turn a job description into a tailored one-page CV using
 Follow `.claude/commands/tailor.md`. Write generated files to
 `output/<company>_<role>/`. The CV basename comes from the JD analyzer and must
 contain no spaces or punctuation.
+
+For multiple job URLs, follow `.claude/commands/tailor-batch.md`. Read one URL
+per line from `jobs.txt` (or the supplied queue path), process jobs sequentially,
+and write the aggregate result to `output/batch_summary.md`.

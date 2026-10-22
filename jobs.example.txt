@@ -1,0 +1,5 @@
+# Add one job posting URL per line, then save this file as jobs.txt.
+# Blank lines and lines beginning with # are ignored.
+
+https://jobs.example.com/software-engineer/12345
+https://careers.example.org/jobs/data-engineer-67890
